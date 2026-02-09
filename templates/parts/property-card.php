@@ -1,4 +1,7 @@
 <?php 
+$property_id = isset($args['property_id']) ? $args['property_id'] : get_the_ID();
+// ... rest of code
+<?php 
 $property_id = $args['property_id'] ?? get_the_ID();
 $price = get_post_meta($property_id, '_property_price', true);
 $featured = get_post_meta($property_id, '_property_featured', true);
