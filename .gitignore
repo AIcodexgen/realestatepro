@@ -1,0 +1,85 @@
+# RealEstatePro WordPress Plugin
+
+A comprehensive real estate management solution featuring property listings, agents, agencies, membership packages, and payment integration.
+
+## Installation
+
+1. Upload the `realestatepro` folder to `/wp-content/plugins/`
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Configure settings in RealEstatePro > Settings
+4. Create necessary pages (automatically created on activation)
+
+## Configuration
+
+### Required Settings
+
+1. **Google Maps API Key**: 
+   - Navigate to RealEstatePro > Settings > Maps
+   - Enter your Google Maps API key (enable Places API, Maps JavaScript API)
+
+2. **Payment Gateways**:
+   - **Stripe**: Enter Publishable and Secret keys
+   - **PayPal**: Enter Client ID and Secret, enable sandbox for testing
+
+3. **Currency & Pricing**:
+   - Set default currency and position
+   - Configure area units (sqft/sqm)
+
+### Membership Packages
+
+Create packages in RealEstatePro > Packages:
+- Title and description
+- Price
+- Number of listings allowed
+- Duration (days)
+- Featured listings limit
+
+### Shortcodes
+
+- `[realestatepro_search]` - Advanced search form
+- `[realestatepro_properties per_page="9" featured="1"]` - Property grid
+- `[realestatepro_submit_property]` - Frontend submission form
+- `[realestatepro_my_properties]` - User's listings dashboard
+- `[realestatepro_favorites]` - Favorite properties
+- `[realestatepro_compare]` - Compare properties page
+- `[realestatepro_packages]` - Pricing table
+- `[realestatepro_agents]` - Agents grid
+
+### Template Overrides
+
+Copy files from `/wp-content/plugins/realestatepro/templates/` to your theme's `/realestatepro/` directory to customize:
+- `single-property.php`
+- `archive-property.php`
+- `submit-property.php`
+- `parts/property-card.php`
+
+### REST API Endpoints
+
+- `GET /wp-json/realestatepro/v1/properties` - Search properties
+- `POST /wp-json/realestatepro/v1/favorites/{id}` - Toggle favorite
+- `POST /wp-json/realestatepro/v1/property` - Submit property
+- `GET /wp-json/realestatepro/v1/geocode?address={address}` - Geocode address
+
+### Hooks & Filters
+
+**Actions:**
+- `realestatepro_payment_complete` - Fired after successful payment
+- `realestatepro_property_submitted` - Fired after property submission
+
+**Filters:**
+- `realestatepro_price_format` - Modify price display format
+- `realestatepro_property_columns` - Modify grid columns count
+
+## Security
+
+- All forms use WordPress nonces
+- Capability checks on all administrative actions
+- Prepared SQL statements for database queries
+- Sanitization/escaping on all outputs
+
+## Compatibility
+
+- WordPress 5.8+
+- PHP 7.4+
+- WooCommerce (optional, for additional payment gateways)
+- WPML/Polylang ready
